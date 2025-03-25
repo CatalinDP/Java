@@ -1,2 +1,0 @@
-TemasAvanzados.JavaBeans
-TemasAvanzados.Persona
