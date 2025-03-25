@@ -1,0 +1,41 @@
+-J-Duser.language=
+-J-Duser.country=
+@options
+@packages
+-encoding
+'UTF-8'
+-protected
+-source
+'22'
+-sourcepath
+'E:/NetBeansProjects/EDD_Actividad1/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2024. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'E:/NetBeansProjects/EDD_Actividad1/target/reports/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'Proholamundo 1.0-SNAPSHOT API'
+-use
+-version
+-windowtitle
+'Proholamundo 1.0-SNAPSHOT API'
+proholamundo
+E:\NetBeansProjects\EDD_Actividad1\src\main\java = 1730725778446
+E:\NetBeansProjects\EDD_Actividad1\target\reports\apidocs\allclasses-index.html = 1731000259029
+E:\NetBeansProjects\EDD_Actividad1\target\reports\apidocs\allpackages-index.html = 1731000259038
+E:\NetBeansProjects\EDD_Actividad1\target\reports\apidocs\element-list = 1731000258895
+E:\NetBeansProjects\EDD_Actividad1\target\reports\apidocs\help-doc.html = 1731000259119
+E:\NetBeansProjects\EDD_Actividad1\target\reports\apidocs\index-all.html = 1731000259094
+E:\NetBeansProjects\EDD_Actividad1\target\reports\apidocs\index.html = 1731000259107
+E:\NetBeansProjects\EDD_Actividad1\target\reports\apidocs\member-search-index.js = 1731000259064
+E:\NetBeansProjects\EDD_Actividad1\target\reports\apidocs\module-search-index.js = 1731000259041
+E:\NetBeansProjects\EDD_Actividad1\target\reports\apidocs\overview-tree.html = 1731000259008
+E:\NetBeansProjects\EDD_Actividad1\target\reports\apidocs\package-search-index.js = 1731000259045
+E:\NetBeansProjects\EDD_Actividad1\target\reports\apidocs\search.html = 1731000259102
+E:\NetBeansProjects\EDD_Actividad1\target\reports\apidocs\tag-search-index.js = 1731000259069
+E:\NetBeansProjects\EDD_Actividad1\target\reports\apidocs\type-search-index.js = 1731000259053
