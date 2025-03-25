@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.time.Period;
+import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
 import java.util.Dictionary;
 import java.util.Hashtable;
@@ -37,22 +38,11 @@ public class Calendario {
     }
     
     public void mostrarDias(String fecha1, String fecha2) {
-        int diferenciaDias = 0;
         LocalDate f1 = LocalDate.parse(fecha1, formato);
         LocalDate f2 = LocalDate.parse(fecha2, formato);
-        Period diferencia = Period.between(f1, f2);
-        int mesInicio =  f2.getMonthValue() - diferencia.getMonths() ;
-        LocalDate mes = LocalDate.of(this.fechaActual.getYear(), mesInicio, f1.getDayOfMonth());
-        System.out.println("Mes: " + mes);
-        for (int i = 1; i <= diferencia.getMonths(); i++ ) {
-            for (int j = 0; j < mes.lengthOfMonth(); j++) {
-                diferenciaDias++;
-
-            }
-            mes.plusMonths(1);
-        }
-        diferenciaDias += diferencia.getDays();
-        System.out.println("Hay " + diferencia.getMonths() + " días de diferencia");
+        long diferenciaDias = ChronoUnit.DAYS.between(f1, f2);
+        //diferenciaDias += diferencia.getDays();
+        System.out.println("Hay " + diferenciaDias + " días de diferencia");
     }
     
     public void mostrarMes(int mesNum, int diaAnio) {
