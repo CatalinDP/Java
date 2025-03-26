@@ -35,7 +35,8 @@ public class Main {
             System.out.println("Futbolista: " + guardado);
         }
         System.out.println("------------------------------");
-        Arrays.sort(furbo, c1);
+        Arrays.sort(furbo, new CompararNombre());
+        Arrays.sort(furbo, new CompararNombre().reversed());
         System.out.println(Arrays.toString(furbo));
         System.out.println("------------------------------");
         Arrays.sort(furbo, c2);
