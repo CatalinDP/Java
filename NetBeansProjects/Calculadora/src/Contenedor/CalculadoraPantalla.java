@@ -60,8 +60,11 @@ public class CalculadoraPantalla extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(68, 68, 68));
+
         jLabel1.setText("Calculadora by Catalin");
 
+        n2.setBackground(new java.awt.Color(118, 113, 113));
         n2.setText("2");
         n2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -69,6 +72,7 @@ public class CalculadoraPantalla extends javax.swing.JFrame {
             }
         });
 
+        n3.setBackground(new java.awt.Color(118, 113, 113));
         n3.setText("3");
         n3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -76,6 +80,7 @@ public class CalculadoraPantalla extends javax.swing.JFrame {
             }
         });
 
+        n1.setBackground(new java.awt.Color(118, 113, 113));
         n1.setText("1");
         n1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -83,6 +88,7 @@ public class CalculadoraPantalla extends javax.swing.JFrame {
             }
         });
 
+        igu.setBackground(new java.awt.Color(118, 113, 113));
         igu.setText("=");
         igu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,6 +96,7 @@ public class CalculadoraPantalla extends javax.swing.JFrame {
             }
         });
 
+        n5.setBackground(new java.awt.Color(118, 113, 113));
         n5.setText("5");
         n5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -97,6 +104,7 @@ public class CalculadoraPantalla extends javax.swing.JFrame {
             }
         });
 
+        n6.setBackground(new java.awt.Color(118, 113, 113));
         n6.setText("6");
         n6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -104,6 +112,7 @@ public class CalculadoraPantalla extends javax.swing.JFrame {
             }
         });
 
+        mas.setBackground(new java.awt.Color(118, 113, 113));
         mas.setText("+");
         mas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -111,6 +120,7 @@ public class CalculadoraPantalla extends javax.swing.JFrame {
             }
         });
 
+        n7.setBackground(new java.awt.Color(118, 113, 113));
         n7.setText("7");
         n7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,6 +128,7 @@ public class CalculadoraPantalla extends javax.swing.JFrame {
             }
         });
 
+        n9.setBackground(new java.awt.Color(118, 113, 113));
         n9.setText("9");
         n9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -125,6 +136,7 @@ public class CalculadoraPantalla extends javax.swing.JFrame {
             }
         });
 
+        n4.setBackground(new java.awt.Color(118, 113, 113));
         n4.setText("4");
         n4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -132,6 +144,7 @@ public class CalculadoraPantalla extends javax.swing.JFrame {
             }
         });
 
+        menos.setBackground(new java.awt.Color(118, 113, 113));
         menos.setText("-");
         menos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -139,6 +152,7 @@ public class CalculadoraPantalla extends javax.swing.JFrame {
             }
         });
 
+        n0.setBackground(new java.awt.Color(118, 113, 113));
         n0.setText("0");
         n0.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -146,6 +160,7 @@ public class CalculadoraPantalla extends javax.swing.JFrame {
             }
         });
 
+        n8.setBackground(new java.awt.Color(118, 113, 113));
         n8.setText("8");
         n8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -153,6 +168,7 @@ public class CalculadoraPantalla extends javax.swing.JFrame {
             }
         });
 
+        divid.setBackground(new java.awt.Color(118, 113, 113));
         divid.setText("/");
         divid.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -160,6 +176,7 @@ public class CalculadoraPantalla extends javax.swing.JFrame {
             }
         });
 
+        multi.setBackground(new java.awt.Color(118, 113, 113));
         multi.setText("*");
         multi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -167,6 +184,7 @@ public class CalculadoraPantalla extends javax.swing.JFrame {
             }
         });
 
+        borrar.setBackground(new java.awt.Color(118, 113, 113));
         borrar.setText("C");
         borrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -174,6 +192,7 @@ public class CalculadoraPantalla extends javax.swing.JFrame {
             }
         });
 
+        Pantalla.setBackground(new java.awt.Color(204, 204, 204));
         Pantalla.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PantallaActionPerformed(evt);
@@ -288,9 +307,14 @@ public class CalculadoraPantalla extends javax.swing.JFrame {
 
     private void dividActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dividActionPerformed
         this.operador = '/';
-        asignarValores(this.Pantalla.getText());
-        this.existe = true;
-        asd();
+        try {
+            asignarValores(this.Pantalla.getText());
+            this.existe = true;
+            asd();  
+        }
+        catch (Exception e) {
+            System.out.println("Error: " + e);
+        }
     }//GEN-LAST:event_dividActionPerformed
 
     private void n1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_n1ActionPerformed
@@ -343,23 +367,38 @@ public class CalculadoraPantalla extends javax.swing.JFrame {
 
     private void masActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_masActionPerformed
         this.operador = '+';
-        asignarValores(this.Pantalla.getText());
-        this.existe = true;
-        asd();
+        try {
+            asignarValores(this.Pantalla.getText());
+            this.existe = true;
+            asd();  
+        }
+        catch (Exception e) {
+            System.out.println("Error: " + e);
+        }
     }//GEN-LAST:event_masActionPerformed
 
     private void menosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menosActionPerformed
         this.operador = '-';
-        asignarValores(this.Pantalla.getText());
-        this.existe = true;
-        asd();
+        try {
+            asignarValores(this.Pantalla.getText());
+            this.existe = true;
+            asd();  
+        }
+        catch (Exception e) {
+            System.out.println("Error: " + e);
+        }
     }//GEN-LAST:event_menosActionPerformed
 
     private void multiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_multiActionPerformed
         this.operador = '*';
-        asignarValores(this.Pantalla.getText());
-        this.existe = true;
-        asd();
+        try {
+            asignarValores(this.Pantalla.getText());
+            this.existe = true;
+            asd();  
+        }
+        catch (Exception e) {
+            System.out.println("Error: " + e);
+        }
     }//GEN-LAST:event_multiActionPerformed
 
     private void n2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_n2ActionPerformed
