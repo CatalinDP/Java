@@ -18,20 +18,19 @@ import java.util.Scanner;
 public class Ejercicio6 {
     public static void main(String[] args) {
         BufferedReader read = null;
-        int sumaTotal = 0;
+        int sumaTotal = 0, contador = 0;
         String enteros = "";
+        Scanner sc;
         try {
             read = new BufferedReader(new FileReader("C:\\Users\\DPCat\\Documents\\GitHub\\Java\\Tema10Ficheros\\src\\Ejercicios\\Enteros.txt"));
-            String numeros = read.readLine();
-            while (numeros != null) {
-                enteros += numeros;
-                numeros = read.readLine();
-            }
-            String[] arr = enteros.split("  " + " " + "  ");
-            for (String b : arr) {
-                System.out.println(b.trim());
-                int num = new Scanner(enteros).nextInt();
-                sumaTotal += num;
+            enteros = read.readLine();
+            while (enteros != null) {
+                sc = new Scanner(enteros);
+                while (sc.hasNextInt()) {
+                    sumaTotal += sc.nextInt();
+                    contador++;
+                }
+                enteros = read.readLine();
             }
         } catch (IOException e) {
             System.err.println("Error: " + e);
@@ -43,5 +42,6 @@ public class Ejercicio6 {
             }
         }
         System.out.println("Suma: " + sumaTotal);
+        System.out.println("Media: " + sumaTotal/ contador);
     }
 }

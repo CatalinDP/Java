@@ -1,0 +1,11 @@
+Juan 22 1,77
+Alberto 26 1,89
+Luis 22 1,80
+Pedro 20 1,73
+Carlos 24 1,85
+Sergio 28 1,82
+David 21 1,78
+Miguel 23 1,90
+Andrés 25 1,76
+Raúl 29 1,81
+Javier 27 1,83
