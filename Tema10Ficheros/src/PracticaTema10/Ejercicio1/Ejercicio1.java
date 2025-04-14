@@ -21,7 +21,7 @@ public class Ejercicio1 {
        BufferedWriter escribir = null;
        String numeros = "";
        Scanner sc = null;
-       String ruta = "C:\\Users\\DPCat\\Documents\\GitHub\\Java\\Tema10Ficheros\\src\\PracticaTema10";
+       String ruta = "C:\\Users\\DPCat\\Documents\\GitHub\\Java\\Tema10Ficheros\\src\\PracticaTema10\\Ejercicio1";
        try {
            archivo = new File(ruta + "\\ejercicio1_res.txt");
            archivo.createNewFile();
@@ -29,23 +29,27 @@ public class Ejercicio1 {
            escribir = new BufferedWriter(new FileWriter(ruta + "\\ejercicio1_res.txt"));
            String datos = read.readLine();
            while (datos != null) {
-               System.out.println(datos);
-               numeros += datos;
+               numeros += datos + " ";
                datos = read.readLine();
            }
-           System.out.println(numeros);
            read = new BufferedReader(new FileReader(ruta + "\\ejercicio1_2.txt"));
            datos = read.readLine();
            while (datos != null) {
-               System.out.println(datos);
-               numeros += datos;
+               numeros += datos + " ";
                datos = read.readLine();
            }
-            String[] nums = numeros.split("");
+           System.out.println(numeros);
+            int[] nums = new int[0];
+            sc = new Scanner(numeros);
+            while (sc.hasNextInt()) {
+               nums = Arrays.copyOf(nums, nums.length+1);
+               nums[nums.length-1] = sc.nextInt(); 
+            }
             Arrays.sort(nums);
             System.out.println(Arrays.toString(nums));
+            
             for (int i = 0; i < nums.length; i++) {
-                escribir.write(nums[i]);
+                escribir.write(String.valueOf(nums[i]));
                 escribir.newLine();
             }
        } catch (IOException e) {

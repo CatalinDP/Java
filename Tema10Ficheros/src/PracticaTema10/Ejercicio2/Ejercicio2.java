@@ -29,6 +29,7 @@ public class Ejercicio2 {
            }
            String[] contadorPalabras = palabras.split(" ");
            palabras = palabras.replace(" ", "");
+           System.out.println(palabras);
            System.out.println("En total hay: " + contadorPalabras.length + " palabras");
            System.out.println("En total hay: " + linea + " lineas");
            System.out.println("En total hay: " + palabras.length() + " caracteres");

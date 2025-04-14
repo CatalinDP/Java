@@ -1,0 +1,3 @@
+fecha                        Temperatura máxima                        Temperatura mínima
+2020-01-15                          12                                          -1
+2020-01-16                          15                                          2

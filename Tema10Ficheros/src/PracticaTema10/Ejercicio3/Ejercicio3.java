@@ -16,37 +16,35 @@ public class Ejercicio3 {
         Scanner sc = new Scanner(System.in);
         String texto1 = "", texto2 = "";
         boolean iguales = false;
-        int linea1 = 0, linea2 = 0;
+        int linea = 0;
         try {
             read = new BufferedReader(new FileReader("C:\\Users\\DPCat\\Documents\\GitHub\\Java\\Tema10Ficheros\\src\\PracticaTema10\\Ejercicio3\\texto1.txt"));
             String datos = read.readLine();
             while (datos != null) {
                 texto1 += datos + "\n";
-                linea2++;
                 datos = read.readLine();
             }
             read = new BufferedReader(new FileReader("C:\\Users\\DPCat\\Documents\\GitHub\\Java\\Tema10Ficheros\\src\\PracticaTema10\\Ejercicio3\\texto2.txt"));
             datos = read.readLine();
-            while (datos != null) {
+            int i = 0;
+            while (datos != null && !iguales) {
+                linea++;
                 texto2 += datos + "\n";
-                linea1++;
+                while (!iguales && i < texto2.length()-1) {
+                    if (texto1.charAt(i) != (texto2.charAt(i))) {
+                        System.out.println("El caracter " + i + " es diferente: " + texto1.charAt(i));
+                        System.out.println("En la línea " + linea);
+                        iguales = true;
+                    }
+                i++;
+                }
                 datos = read.readLine();
             }
-            System.out.println(texto1);
-            System.out.println(texto2);
-            int i = 0;
-            while (!iguales) {
-                if (texto1.charAt(i) != (texto2.charAt(i))) {
-                    System.out.println("El caracter: " + i + " es diferente");
-                    iguales = true;
-                } else if (linea1 != linea2) {
-                    System.out.println("Tienen diferentes lineas");
-                    iguales = true;
-                } else if (texto1.length() != texto2.length()) {
-                    System.out.println("Hay una una diferencia de caracteres");
-                    iguales = true;
-                }
-                i++;
+            if (texto1.length() != texto2.length()) {
+                System.out.println("Hay una una diferencia de caracteres");
+            }
+            if (!iguales) {
+                System.out.println("Ambos textos son iguales");
             }
         } catch (IOException e) {
             System.out.println("Error: " + e);
