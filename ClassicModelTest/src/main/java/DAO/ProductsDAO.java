@@ -161,10 +161,11 @@ public class ProductsDAO implements BaseDAO{
         String sql = "DELETE FROM products WHERE productCode = ?";
         try {
             ps = con.prepareStatement(sql);
+            ps.setString(1, product.getProductCode());
             System.out.println("Estas seguro de que quieres elimiar el producto: 1-Si o 2-No " + product.buscar(product));
             int opcion = Integer.parseInt(sc.nextLine());
             switch (opcion) {
-                case 1 -> ps.executeQuery();
+                case 1 -> ps.execute();
                 case 2 -> System.out.println("No se elimina");
                 default -> System.out.println("Introduce un numero correcto");
             }
@@ -183,19 +184,19 @@ public class ProductsDAO implements BaseDAO{
         boolean succes = false;
         PreparedStatement ps;
         Connection con = Connect.Conex.getConnection();
-        String sql = "INSERT INTO payments (productCode, productName, productLine, productScale, productVendor, productDescription, quantityInStock, buyPrice, MSRP)"
+        String sql = "INSERT INTO products (productCode, productName, productLine, productScale, productVendor, productDescription, quantityInStock, buyPrice, MSRP)"
                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
         try {
             ps = con.prepareStatement(sql);
-            ps.setString(0, product.getProductCode());
-            ps.setString(1, product.getProductName());
-            ps.setString(2 , product.getProductLine());
-            ps.setString(3 , product.getProductScale());
-            ps.setString(4, product.getProductVendor());
-            ps.setString(5, product.getProductDescription());
-            ps.setInt(6, product.getQuantityInStock());
-            ps.setDouble(7, product.getBuyPrice());
-            ps.setDouble(8, product.getMSRP());
+            ps.setString(1, product.getProductCode());
+            ps.setString(2, product.getProductName());
+            ps.setString(3 , product.getProductLine());
+            ps.setString(4 , product.getProductScale());
+            ps.setString(5, product.getProductVendor());
+            ps.setString(6, product.getProductDescription());
+            ps.setInt(7, product.getQuantityInStock());
+            ps.setDouble(8, product.getBuyPrice());
+            ps.setDouble(9, product.getMSRP());
             ps.execute();
             this.products.add(product);
             succes = true;
@@ -208,21 +209,21 @@ public class ProductsDAO implements BaseDAO{
     @Override
     public boolean modificar(Object obj) {
         ProductsDAO product = (ProductsDAO) obj;
-        String sql = "UPDATE payments SET productName = ? , productLine = ?, productScale = ?, productVendor = ?, productDescription = ?, quantityInStock = ?, buyPrice = ?, MSRP = ? WHERE productCode = ?";
+        String sql = "UPDATE products SET productName = ? , productLine = ?, productScale = ?, productVendor = ?, productDescription = ?, quantityInStock = ?, buyPrice = ?, MSRP = ? WHERE productCode = ?";
         boolean succes = false;
         PreparedStatement ps;
         Connection con = Connect.Conex.getConnection();
         try {
             ps = con.prepareStatement(sql);
-            ps.setString(0, product.getProductName());
-            ps.setString(1, product.getProductLine());
-            ps.setString(2, product.getProductScale());
-            ps.setString(3, product.getProductVendor());
-            ps.setString(4, product.getProductDescription());
-            ps.setInt(5, product.getQuantityInStock());
-            ps.setDouble(6, product.getBuyPrice());
-            ps.setDouble(7, product.getMSRP());
-            ps.setString(8, product.getProductCode());
+            ps.setString(1, product.getProductName());
+            ps.setString(2, product.getProductLine());
+            ps.setString(3, product.getProductScale());
+            ps.setString(4, product.getProductVendor());
+            ps.setString(5, product.getProductDescription());
+            ps.setInt(6, product.getQuantityInStock());
+            ps.setDouble(7, product.getBuyPrice());
+            ps.setDouble(8, product.getMSRP());
+            ps.setString(9, product.getProductCode());
             ps.execute();
             succes = true;
         } catch (SQLException e) {
@@ -235,13 +236,13 @@ public class ProductsDAO implements BaseDAO{
     public boolean buscar(Object obj) {
         boolean succes = false;
         PreparedStatement ps;
-        ProductsDAO product = new ProductsDAO();
+        ProductsDAO product = (ProductsDAO) obj;
         ResultSet rs;
         Connection con = Connect.Conex.getConnection();
-        String sql = "SELECT * FROM orders WHERE orderNumber = ?";
+        String sql = "SELECT * FROM products WHERE productCode = ?";
         try {
             ps = con.prepareStatement(sql);
-            ps.setString(0, product.getProductCode());
+            ps.setString(1, product.getProductCode());
             rs = ps.executeQuery();
             while (rs.next()) {
                 product.setProductCode(rs.getString("productCode"));

@@ -31,13 +31,13 @@ public class PaymentsDAO implements BaseDAO {
         this.customerNumber = customerNumber;
     }
 
-    public PaymentsDAO(String chekcNumber, LocalDate paymentDate, double amount) {
+    public PaymentsDAO(String chekcNumber, String paymentDate, double amount) {
         this.chekcNumber = chekcNumber;
-        this.paymentDate = paymentDate;
+        this.paymentDate = LocalDate.parse(paymentDate);
         this.amount = amount;
     }
 
-    public PaymentsDAO(int customerNumber, String checkNumber, LocalDate paymentDate, double amount) {
+    public PaymentsDAO(int customerNumber, String checkNumber, String paymentDate, double amount) {
         this(checkNumber, paymentDate, amount);
         this.customerNumber = customerNumber;
     }
@@ -107,10 +107,11 @@ public class PaymentsDAO implements BaseDAO {
         String sql = "DELETE FROM payments WHERE checkNumber = ?";
         try {
             ps = con.prepareStatement(sql);
+            ps.setString(1, payment.getCheckNumber());
             System.out.println("Estas seguro de que quieres elimiar el pago: 1-Si o 2-No " + payment.buscar(payment));
             int opcion = Integer.parseInt(sc.nextLine());
             switch (opcion) {
-                case 1 -> ps.executeQuery();
+                case 1 -> ps.execute();
                 case 2 -> System.out.println("No se elimina");
                 default -> System.out.println("Introduce un numero correcto");
             }
@@ -133,10 +134,10 @@ public class PaymentsDAO implements BaseDAO {
                 + "VALUES (?, ?, ?, ?);";
         try {
             ps = con.prepareStatement(sql);
-            ps.setInt(0, payment.getCustomerNumber());
-            ps.setString(1, payment.getCheckNumber());
-            ps.setDate(2 ,java.sql.Date.valueOf(payment.getPaymentDate()));
-            ps.setDouble(3 ,payment.getAmount());
+            ps.setInt(1, payment.getCustomerNumber());
+            ps.setString(2, payment.getCheckNumber());
+            ps.setDate(3 ,java.sql.Date.valueOf(payment.getPaymentDate()));
+            ps.setDouble(4 ,payment.getAmount());
             ps.execute();
             this.payments.add(payment);
             succes = true;
@@ -149,16 +150,17 @@ public class PaymentsDAO implements BaseDAO {
     @Override
     public boolean modificar(Object obj) {
         PaymentsDAO payment = (PaymentsDAO) obj;
-        String sql = "UPDATE payments SET customerNumber = ? , checkNumber= ? , paymentDate = ?, amount = ? WHERE id = ?";
+        String sql = "UPDATE payments SET customerNumber = ? , checkNumber= ? , paymentDate = ?, amount = ? WHERE checkNumber = ?";
         boolean succes = false;
         PreparedStatement ps;
         Connection con = Connect.Conex.getConnection();
         try {
             ps = con.prepareStatement(sql);
-            ps.setInt(0, payment.getCustomerNumber());
-            ps.setString(1, payment.getCheckNumber());
-            ps.setString(2 ,payment.getPaymentDate().toString());
-            ps.setDouble(3 ,payment.getAmount());
+            ps.setInt(1, payment.getCustomerNumber());
+            ps.setString(2, payment.getCheckNumber());
+            ps.setString(3 ,payment.getPaymentDate().toString());
+            ps.setDouble(4 ,payment.getAmount());
+            ps.setString(5, payment.getCheckNumber());
             ps.execute();
             succes = true;
         } catch (SQLException e) {
@@ -171,13 +173,13 @@ public class PaymentsDAO implements BaseDAO {
     public boolean buscar(Object obj) {
         boolean succes = false;
         PreparedStatement ps;
-        PaymentsDAO payment = new PaymentsDAO();
+        PaymentsDAO payment = (PaymentsDAO) obj;
         ResultSet rs;
         Connection con = Connect.Conex.getConnection();
         String sql = "SELECT * FROM payments WHERE checkNumber = ?";
         try {
             ps = con.prepareStatement(sql);
-            ps.setInt(1, payment.getCustomerNumber());
+            ps.setString(1, payment.getCheckNumber());
             rs = ps.executeQuery();
             while (rs.next()) {
                 payment.setCustomerNumber(rs.getInt("customerNumber"));

@@ -144,13 +144,14 @@ public class EmployeesDAO implements BaseDAO {
         boolean succes = false;
         PreparedStatement ps;
         Connection con = Connect.Conex.getConnection();
-        String sql = "DELETE FROM employee WHERE employeeNumber = ?";
+        String sql = "DELETE FROM employees WHERE employeeNumber = ?";
         try {
             ps = con.prepareStatement(sql);
+            ps.setInt(1, employee.getEmployeeNumber());
             System.out.println("Estas seguro de que quieres elimiar el empledo: 1-Si o 2-No " + employee.buscar(employee));
             int opcion = Integer.parseInt(sc.nextLine());
             switch (opcion) {
-                case 1 -> ps.executeQuery();
+                case 1 -> ps.execute();
                 case 2 -> System.out.println("No se elimina");
                 default -> System.out.println("Introduce un numero correcto");
             }
@@ -173,14 +174,14 @@ public class EmployeesDAO implements BaseDAO {
                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
         try {
             ps = con.prepareStatement(sql);
-            ps.setInt(0, employee.getEmployeeNumber());
-            ps.setString(1, employee.getLastName());
-            ps.setString(2 ,employee.getFirstName());
-            ps.setString(3 ,employee.getExtension());
-            ps.setString(4 ,employee.getEmail());
-            ps.setInt(5 ,employee.getOfficeCode());
-            ps.setInt(6 ,employee.getReportsTo());
-            ps.setString(7 ,employee.getJobTitle());
+            ps.setInt(1, employee.getEmployeeNumber());
+            ps.setString(2, employee.getLastName());
+            ps.setString(3 ,employee.getFirstName());
+            ps.setString(4 ,employee.getExtension());
+            ps.setString(5 ,employee.getEmail());
+            ps.setInt(6, employee.getOfficeCode());
+            ps.setInt(7, employee.getReportsTo());
+            ps.setString(8, employee.getJobTitle());
             ps.execute();
             this.employees.add(employee);
             succes = true;
@@ -193,20 +194,21 @@ public class EmployeesDAO implements BaseDAO {
     @Override
     public boolean modificar(Object obj) {
         EmployeesDAO employee = (EmployeesDAO) obj;
-        String sql = "UPDATE employees SET employeeNumber = ? , lastName = ? , firstName = ?, extension = ?, email = ?, officeCode = ?, reportsTo = ?, jobTitle = ? WHERE id = ?";
+        String sql = "UPDATE employees SET employeeNumber = ? , lastName = ? , firstName = ?, extension = ?, email = ?, officeCode = ?, reportsTo = ?, jobTitle = ? WHERE employeeNumber = ?";
         boolean succes = false;
         PreparedStatement ps;
         Connection con = Connect.Conex.getConnection();
         try {
             ps = con.prepareStatement(sql);
-            ps.setInt(0, employee.getEmployeeNumber());
-            ps.setString(1, employee.getLastName());
-            ps.setString(2 ,employee.getFirstName());
-            ps.setString(3 ,employee.getExtension());
-            ps.setString(4 ,employee.getEmail());
-            ps.setInt(5 ,employee.getOfficeCode());
-            ps.setInt(6 ,employee.getReportsTo());
-            ps.setString(7 ,employee.getJobTitle());
+            ps.setInt(1, employee.getEmployeeNumber());
+            ps.setString(2, employee.getLastName());
+            ps.setString(3 ,employee.getFirstName());
+            ps.setString(4 ,employee.getExtension());
+            ps.setString(5 ,employee.getEmail());
+            ps.setInt(6, employee.getOfficeCode());
+            ps.setInt(7, employee.getReportsTo());
+            ps.setString(8, employee.getJobTitle());
+            ps.setInt(9, employee.getEmployeeNumber());
             ps.execute();
             succes = true;
         } catch (SQLException e) {
@@ -219,7 +221,7 @@ public class EmployeesDAO implements BaseDAO {
     public boolean buscar(Object obj) {
         boolean succes = false;
         PreparedStatement ps;
-        EmployeesDAO employee = new EmployeesDAO();
+        EmployeesDAO employee = (EmployeesDAO) obj;
         ResultSet rs;
         Connection con = Connect.Conex.getConnection();
         String sql = "SELECT * FROM employees WHERE employeeNumber = ?";

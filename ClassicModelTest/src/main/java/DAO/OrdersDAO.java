@@ -35,16 +35,17 @@ public class OrdersDAO implements BaseDAO {
         this.orderNumber = orderNumber;
     }
 
-    public OrdersDAO(LocalDate orderDate, LocalDate requiredDate, String status, String cooments, int customerNumber) {
-        this.orderDate = orderDate;
-        this.requiredDate = requiredDate;
+    public OrdersDAO(String orderDate, String shippedDate, String requiredDate, String status, String comments, int customerNumber) {
+        this.orderDate = LocalDate.parse(orderDate);
+        this.requiredDate = LocalDate.parse(requiredDate);
+        this.shippedDate = LocalDate.parse(shippedDate);
         this.status = status;
-        this.cooments = cooments;
+        this.cooments = comments;
         this.customerNumber = customerNumber;
     }
 
-    public OrdersDAO(int orderNumber, LocalDate orderDate, LocalDate requiredDate, String status, String coments, int customerNumber) {
-        this(orderDate, requiredDate, status, coments, customerNumber);
+    public OrdersDAO(int orderNumber, String orderDate,String shippedDate ,String requiredDate, String status, String comments, int customerNumber) {
+        this(orderDate, shippedDate,requiredDate, status, comments, customerNumber);
         this.orderNumber = orderNumber;
     }
 
@@ -141,10 +142,11 @@ public class OrdersDAO implements BaseDAO {
         String sql = "DELETE FROM orders WHERE orderNumber = ?";
         try {
             ps = con.prepareStatement(sql);
+            ps.setInt(1, order.getOrderNumber());
             System.out.println("Estas seguro de que quieres elimiar el pedido: 1-Si o 2-No " + order.buscar(order));
             int opcion = Integer.parseInt(sc.nextLine());
             switch (opcion) {
-                case 1 -> ps.executeQuery();
+                case 1 -> ps.execute();
                 case 2 -> System.out.println("No se elimina");
                 default -> System.out.println("Introduce un numero correcto");
             }
@@ -163,17 +165,17 @@ public class OrdersDAO implements BaseDAO {
         boolean succes = false;
         PreparedStatement ps;
         Connection con = Connect.Conex.getConnection();
-        String sql = "INSERT INTO payments (orderNumber, orderDate, requiredDate, shippedDate, status, comments, customerNumber)"
+        String sql = "INSERT INTO orders (orderNumber, orderDate, requiredDate, shippedDate, status, comments, customerNumber)"
                 + "VALUES (?, ?, ?, ?, ?, ?, ?);";
         try {
             ps = con.prepareStatement(sql);
-            ps.setInt(0, order.getOrderNumber());
-            ps.setDate(1, java.sql.Date.valueOf(order.getOrderDate()));
-            ps.setDate(2 ,java.sql.Date.valueOf(order.getRequiredDate()));
-            ps.setDate(3 ,java.sql.Date.valueOf(order.getShippedDate()));
-            ps.setString(4 ,order.getStatus());
-            ps.setString(5 ,order.getComments());
-            ps.setInt(6 ,order.getCustomerNumber());
+            ps.setInt(1, order.getOrderNumber());
+            ps.setDate(2, java.sql.Date.valueOf(order.getOrderDate()));
+            ps.setDate(3 ,java.sql.Date.valueOf(order.getRequiredDate()));
+            ps.setDate(4 ,java.sql.Date.valueOf(order.getShippedDate()));
+            ps.setString(5 ,order.getStatus());
+            ps.setString(6 ,order.getComments());
+            ps.setInt(7 ,order.getCustomerNumber());
             ps.execute();
             this.orders.add(order);
             succes = true;
@@ -186,19 +188,20 @@ public class OrdersDAO implements BaseDAO {
     @Override
     public boolean modificar(Object obj) {
         OrdersDAO order = (OrdersDAO) obj;
-        String sql = "UPDATE payments SET orderNumber = ? , orderDate = ? , requiredDate = ?, shippedDate = ?, status = ?, comments = ?, customerNumber = ? WHERE orderNumber = ?";
+        String sql = "UPDATE orders SET orderNumber = ? , orderDate = ? , requiredDate = ?, shippedDate = ?, status = ?, comments = ?, customerNumber = ? WHERE orderNumber = ?";
         boolean succes = false;
         PreparedStatement ps;
         Connection con = Connect.Conex.getConnection();
         try {
             ps = con.prepareStatement(sql);
-            ps.setInt(0, order.getCustomerNumber());
-            ps.setDate(1, java.sql.Date.valueOf(order.getOrderDate()));
-            ps.setDate(2, java.sql.Date.valueOf(order.getRequiredDate()));
-            ps.setDate(3, java.sql.Date.valueOf(order.getShippedDate()));
-            ps.setString(4, order.getStatus());
-            ps.setString(5, order.getComments());
-            ps.setInt(6, order.getCustomerNumber());
+            ps.setInt(1, order.getOrderNumber());
+            ps.setDate(2, java.sql.Date.valueOf(order.getOrderDate()));
+            ps.setDate(3, java.sql.Date.valueOf(order.getRequiredDate()));
+            ps.setDate(4, java.sql.Date.valueOf(order.getShippedDate()));
+            ps.setString(5, order.getStatus());
+            ps.setString(6, order.getComments());
+            ps.setInt(7, order.getCustomerNumber());
+            ps.setInt(8, order.getOrderNumber());
             ps.execute();
             succes = true;
         } catch (SQLException e) {
@@ -211,13 +214,13 @@ public class OrdersDAO implements BaseDAO {
     public boolean buscar(Object obj) {
         boolean succes = false;
         PreparedStatement ps;
-        OrdersDAO order = new OrdersDAO();
+        OrdersDAO order = (OrdersDAO)obj;
         ResultSet rs;
         Connection con = Connect.Conex.getConnection();
         String sql = "SELECT * FROM orders WHERE orderNumber = ?";
         try {
             ps = con.prepareStatement(sql);
-            ps.setInt(1, order.getCustomerNumber());
+            ps.setInt(1, order.getOrderNumber());
             rs = ps.executeQuery();
             while (rs.next()) {
                 order.setOrderNumber(rs.getInt("orderNumber"));
