@@ -9,7 +9,7 @@ import java.sql.SQLException;
 public class Conex {
         public static Connection getConnection() {
             String url = "jdbc:mysql://localhost:3306/classicmodels";
-            String user = "root";
+            String user = "conex";
             String pass = "";
             Connection con = null;    
         try {

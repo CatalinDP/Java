@@ -42,7 +42,7 @@ public class Ejercicio1 {
     }
     
     public static void main(String[] args) {
-        escribirNumeros(); //Un programa para escribir los numeros
+        //escribirNumeros(); //Un programa para escribir los numeros
         try (
                 FileInputStream archivoEntrada = new FileInputStream("src\\PracticaTema11\\Ejercicio1\\numeros.dat");
                 ObjectInputStream entrada = new ObjectInputStream(archivoEntrada);
